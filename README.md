@@ -1,7 +1,7 @@
 ### Milestone 1 - March 10, 2015
-Prepare a detailed plan to tackle project 2.
-Assess Project feasibility
-Create a hypothesis for the project based on the project question
++ Prepare a detailed plan to tackle project 2.
++ Assess Project feasibility
++ Create a hypothesis for the project based on the project question
 
 ### Milestone 2 - March 17, 2015
 Implement a tool to collect data
