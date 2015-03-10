@@ -4,17 +4,16 @@
 + Create a hypothesis for the project based on the project question
 
 ### Milestone 2 - March 17, 2015
-Implement a tool to collect data
-Use tool to visualize data
-
-Collect data from the repositories chosen
++ Implement a tool to collect data
++ Use tool to visualize data
++ Collect data from the resources
 
 ### Milestone 3 - March 24, 2015
 
-Analyze the collected data
-Provide an assertion based on the data
++ Analyze the collected data
++ Provide an assertion based on the data
 
 ### Milestone 4 - March 31, 2015
 
-Thoroughly analyze the three repositories using statistics and graphs
-Finish the project report
++ Thoroughly analyze the three repositories using statistics and graphs
++ Finish the project report
