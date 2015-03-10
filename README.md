@@ -1,5 +1,5 @@
 ### Research Question
-How are different types of GitHub activites correlated with user satisfaction?
+How are different types of GitHub activites, such as number of pull requests and number of issues over time, correlated with user satisfaction?
 
 ### Hypotheses
 1. As user satisfaction increases, the number of issues will increase because high user satisfaction will promote discussion and recommendations, which will increase the number of users and therefore the number of bugs / issues.
