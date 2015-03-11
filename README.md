@@ -22,6 +22,16 @@ As a user interested in GitHub and software evolution, I want to be able to see 
 
 The scripts will be written so that the user can provide the name of a repo to analyze, but the project will specifically analyze AngularJS, Bootstrap, and Node.js repositories.
 
+### Values, Estimations, and Risks
+
+| Tasks | Values (out of 10) | Estimations | Risks	(1-10, 1 least risky)|
+|--- |---	|---	|---	|
+| Write tool for pull GitHub activities  | 3 | 2 hours | 2 |
+| Write tool for scraping and extracting Reddit and HackerNews | 7 | 6 hours | 5 |
+| Write tool for running sentimental analysis on any text | 4 | 2 hours | 5 |
+| Write D3.js code to display interactive graphs | 8 | 12 hours | 8 |
+| Bootstrap & write Node.js code for server and client | 6 | 5 hours | 3 |
+
 ### Milestones
 #### Milestone 1 - March 10, 2015
 - Prepare a detailed project plan.
