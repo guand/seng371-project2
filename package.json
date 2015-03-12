@@ -1,0 +1,31 @@
+{
+  "name": "seng371-project2",
+  "version": "1.0.0",
+  "description": "SENG 371 Project #2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guand/seng371-project2.git"
+  },
+  "keywords": [
+    "sentimental-analysis",
+    "GitHub"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guand/seng371-project2/issues"
+  },
+  "homepage": "https://github.com/guand/seng371-project2",
+  "dependencies": {
+    "d3": "^3.5.5",
+    "express": "^4.12.2",
+    "jade": "^1.9.2",
+    "method-override": "^2.3.1",
+    "morgan": "^1.5.1",
+    "snoocore": "^2.7.2"
+  }
+}
