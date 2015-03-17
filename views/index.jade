@@ -1,14 +1,14 @@
 html
-	head
-		title #{title}
-	link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css", rel="stylesheet")
-	body
-		div.jumbotron
-			h1 SENG 371 - Project #2
-			h2 Jian Guan, Jonathan Lam, Paul Moon
+  head
+    title #{title}
+    link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css", rel="stylesheet")
+    body
+      div.jumbotron
+        h1 SENG 371 - Project #2
+        h2 Jian Guan, Jonathan Lam, Paul Moon
 
-		div.container.center-block
-			form.form-inline
-				div.form-group
-					input.form-control(type="text", id="repo-name")
-					button.btn.btn-default Search
+      div.container.center-block
+        form.form-inline(name="repoForm", action="repo", method="get")
+          div.form-group
+            input.form-control(type="text", name="repoName", placeholder="Enter a repo name e.g. Bootstrap")
+            button.btn.btn-default(type="submit") Search

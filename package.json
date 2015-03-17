@@ -21,11 +21,16 @@
   },
   "homepage": "https://github.com/guand/seng371-project2",
   "dependencies": {
+    "async": "^0.9.0",
     "d3": "^3.5.5",
     "express": "^4.12.2",
+    "github": "^0.2.3",
     "jade": "^1.9.2",
+    "lodash": "^3.5.0",
     "method-override": "^2.3.1",
     "morgan": "^1.5.1",
+    "q": "^1.2.0",
+    "qs": "^2.4.0",
     "snoocore": "^2.7.2"
   }
 }
