@@ -4,13 +4,9 @@ var methodOverride = require('method-override');
 var jade = require('jade');
 var Q = require('q');
 var d3 = require('d3');
-var Snoocore = require('snoocore');
-
+var redditScript = require('./scripts/reddit');
 var githubScripts = require('./scripts/github.js');
 
-var reddit = new Snoocore({
-  userAgent: 'SENG371-SentimentAnalysis@0.0.1 by seng371-sentimental'  
-});
 
 var app = express();
 var port = process.env.PORT || 9001;
@@ -30,6 +26,9 @@ router.get('/repo', function(request, result) {
     var currentRepo = request.query.repoName;
     githubScripts.getData(currentRepo);
 });
+
+app.get('/reddit/script', redditScript.reddit);
+app.get('/reddit/test', redditScript.test);
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
