@@ -7,7 +7,6 @@ var Q = require('q');
 var _ = require('lodash');
 var async = require('async');
 
-
 var github = new GitHubAPI({
 	version: "3.0.0",
 	debug: true,
@@ -40,29 +39,26 @@ function getRepoUser(repoName) {
 		"q": repoName
 	}, function(error, result) {
 		currentRepo = result.items[0];
-		// console.log(result.items[0]);
 		deferred.resolve(currentRepo.owner.login);
 	});
 
 	return deferred.promise;
 }
 
-
 function getData(repoName) {
 	var deferred = Q.defer();
 
 	getRepoUser(repoName)
 		.then(function (repoUser) {
-			currentUser = repoUser;
-			return getNumPRs(repoUser, repoName);
-		})
-		.then(function (pullRequests) {
-			console.log(pullRequests.length);
-			return getNumIssues(repoUser, repoName);
-		})
-		.then(function (issues) {
-			console.log(issues.length);
-			deferred.resolve();
+			Q.all([getNumPRs(repoUser, repoName),
+					getNumIssues(repoUser, repoName)])
+				.spread(function (pullRequests, numIssues) {
+					var returned = {};
+					returned.pullRequests = pullRequests;
+					returned.numIssues = numIssues;
+
+					deferred.resolve(returned);
+				});
 		});
 
 	return deferred.promise;

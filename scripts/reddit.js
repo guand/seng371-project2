@@ -1,5 +1,5 @@
+var Q = require('q');
 var Snoocore = require('snoocore');
-
 
 var reddit = new Snoocore({
   userAgent: 'Seng371Project2@0.0.1 by guand'
@@ -7,21 +7,27 @@ var reddit = new Snoocore({
   // section for more information on these
 });
 
+var search = function(repoName) {
+	var deferred = Q.defer();
 
-
-var redditScript = function(req, res) {
-	reddit('/search').get({q: 'bootstrap'}).then(function(result) {
-		res.send(result);
+	reddit('/search').get({q: repoName}).then(function(result) {
+		deferred.resolve(result);
 	}).done();
+
+	return deferred.promise;
 }
 
-var redditTest = function(req, res) {
+var searchComments = function(req, res) {
+	var deferred = Q.defer();
+
 	reddit('/comments/2to2a6').get().then(function(result) {
-		res.send(result);
+		deferred.resolve(result);
 	}).done();
+
+	return deferred.promise;
 }
 
 module.exports = {
-	reddit: redditScript,
-	test: redditTest
+	search: search,
+	searchComments: searchComments
 }
