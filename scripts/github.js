@@ -1,4 +1,5 @@
 var GitHubAPI = require('github');
+
 // Object to URL query string
 var QS = require('qs');
 // Promises
@@ -17,12 +18,12 @@ var github = new GitHubAPI({
 	}
 });
 
-var currentUser, currentRepo, pullRequests, issues, stars, commits, contributors;
-
 github.authenticate({
     type: "oauth",
     token: 'c43b70e87678d01e1906699c7324b9816db81e83',
 });
+
+var currentUser, currentRepo, pullRequests, issues, stars, commits, contributors;
 
 function getCurrentUser() {
 	return currentUser;

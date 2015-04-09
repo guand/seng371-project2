@@ -18,9 +18,10 @@ html
             input.form-control(type="text", name="repoName", placeholder="Enter a repo name e.g. Bootstrap")
             button.btn.btn-default(type="submit") Search
 
-      div.main-chart
+      div.row
+        div.main-chart.col-md-6.col-md-offset-3
 
-      script(type="text/javascript").
+      script.
         var data = [
             [2, 2],
             [2, 5],
@@ -29,79 +30,71 @@ html
             [25, 25]
         ];
 
-        var width = 900,
-            height = 900;
+        var margin = {
+          top: 20,
+          right: 20,
+          bottom: 30,
+          left: 30
+        };
+
+        //- var width = 600 + margin.left + margin.right,
+            //- height = 600 + margin.top + margin.bottom;
+
+        var width = 600,
+            height = 600;
 
         var svg = d3.select(".main-chart").append("svg")
           .attr("width", width)
           .attr("height", height);
 
         var x = d3.scale.linear()
-            .domain([0, d3.max(data, function (d) {
+          .domain([0, d3.max(data, function (d) {
             return d[0];
-        })])
-            .range([0, width]);
+          })])
+          .range([margin.left, width - margin.right]);
+          //- .range([0, width]);
 
         var y = d3.scale.linear()
-            .domain([0, d3.max(data, function (d) {
+          .domain([0, d3.max(data, function (d) {
             return d[1];
-        })])
-            //.range([height, 0]) //flip y
-            .range([0, height]);
+          })])  
+          //- .range([height - margin.bottom, margin.top]) //flip y
+          .range([height - margin.bottom, margin.top]) //flip y
 
         var xAxis = d3.svg.axis()
             .scale(x)
             //.orient('bottom')
-            .orient('top'); // adjust ticks to new x axis position
+            .orient('bottom'); // adjust ticks to new x axis position
 
-        main.append('g')
-            //.attr('transform', 'translate(0,' + height + ')')
-            .attr('transform', 'translate(0,0)') // move x axis up
-            .attr('class', 'main axis date')
-            .call(xAxis);
-
-        // draw the y axis
         var yAxis = d3.svg.axis()
             .scale(y)
             .orient('left');
 
-        main.append('g')
-            .attr('transform', 'translate(0,0)')
-            .attr('class', 'main axis date')
+        var line = d3.svg.line()
+          .x(function (d) { return x(d[0])})
+          .y(function (d) { return y(d[1])});
+
+        svg.append("path")
+            .attr('class', 'path')
+            .attr('d', line(data));
+
+        svg.append('g')
+            .attr('class', 'axis')
+            .attr('transform', 'translate(0, ' + (height - margin.bottom) + ')')
+            .call(xAxis);
+
+        svg.append('g')
+            .attr('class', 'axis')
+            .attr('transform', 'translate(' + margin.left + ', 0)')
             .call(yAxis);
 
-        svg.selectAll("scatter-dots").data(data);
+        // Border around the graph
+        var borderPath = svg.append("rect")
+         .attr("x", 0)
+         .attr("y", 0)
+         .attr("height", height)
+         .attr("width", width)
+         .style("stroke", "steelblue")
+         .style("fill", "none")
+         .style("stroke-width", 4);
 
-        //- var margin = {top: 50, right: 55, bottom: 22, left: 40},
-        //-     width = 950 - margin.left - margin.right,
-        //-     height = 540 - margin.top - margin.bottom,
-        //-     bounds = d3.geom.polygon([[0, 0], [0, height], [width, height], [width, 0]]);
-
-        //- var x = d3.scale.linear()
-        //-     .domain([1900, 2013])
-        //-     .range([0, width]);
-
-        //- var y = d3.scale.linear()
-        //-     .domain([0, 9.5])
-        //-     .range([height, 0]);
-
-        //- var xAxis = d3.svg.axis()
-        //-     .scale(x)
-        //-     .orient("bottom")
-        //-     .tickSize(4)
-        //-     .tickFormat(formatYear)
-        //-     .tickPadding(2);
-
-        //- var yAxis = d3.svg.axis()
-        //-     .scale(y)
-        //-     .orient("right")
-        //-     .ticks(10)
-        //-     .tickPadding(10)
-        //-     .tickSize( -width);
-
-        //- var svg = d3.select(".g-main-chart").append("svg")
-        //-     .attr("width", (width + margin.left + margin.right))
-        //-     .attr("height", (height + margin.top + margin.bottom))
-        //-     .style("margin-top", 10 - margin.top + "px")
-        //-   .append("g")
-        //-     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
