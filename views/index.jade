@@ -12,11 +12,12 @@ html
         h1 SENG 371 - Project #2
         h2 Jian Guan, Jonathan Lam, Paul Moon
 
-      div.container.center-block
-        form.form-inline(name="repoForm", action="repo", method="get")
-          div.form-group
-            input.form-control(type="text", name="repoName", placeholder="Enter a repo name e.g. Bootstrap")
-            button.btn.btn-default(type="submit") Search
+      div.row
+        div.col-md-3.col-md-offset-4
+          form.form-inline(name="repoForm", action="repo", method="get")
+            div.form-group
+              input.form-control(type="text", name="repoName", placeholder="Enter a repo name e.g. Bootstrap", size="30")
+              button.btn.btn-default(type="submit") Search
 
       div.row
         div.main-chart.col-md-6.col-md-offset-3
@@ -37,38 +38,33 @@ html
           left: 30
         };
 
-        //- var width = 600 + margin.left + margin.right,
-            //- height = 600 + margin.top + margin.bottom;
-
-        var width = 600,
-            height = 600;
+        var width = 600 - margin.left - margin.right,
+            height = 600 - margin.top - margin.bottom;
 
         var svg = d3.select(".main-chart").append("svg")
-          .attr("width", width)
-          .attr("height", height);
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
 
         var x = d3.scale.linear()
           .domain([0, d3.max(data, function (d) {
             return d[0];
           })])
-          .range([margin.left, width - margin.right]);
-          //- .range([0, width]);
+          .range([0, width]);
 
         var y = d3.scale.linear()
           .domain([0, d3.max(data, function (d) {
             return d[1];
           })])  
-          //- .range([height - margin.bottom, margin.top]) //flip y
-          .range([height - margin.bottom, margin.top]) //flip y
+          .range([height, 0]) // flip y
 
         var xAxis = d3.svg.axis()
             .scale(x)
-            //.orient('bottom')
-            .orient('bottom'); // adjust ticks to new x axis position
+            .orient('bottom'); // tick orientation
 
         var yAxis = d3.svg.axis()
             .scale(y)
-            .orient('left');
+            .orient('left'); // tick orientation
 
         var line = d3.svg.line()
           .x(function (d) { return x(d[0])})
@@ -80,12 +76,11 @@ html
 
         svg.append('g')
             .attr('class', 'axis')
-            .attr('transform', 'translate(0, ' + (height - margin.bottom) + ')')
+            .attr('transform', 'translate(0, ' + height + ')')
             .call(xAxis);
 
         svg.append('g')
             .attr('class', 'axis')
-            .attr('transform', 'translate(' + margin.left + ', 0)')
             .call(yAxis);
 
         // Border around the graph
@@ -94,7 +89,6 @@ html
          .attr("y", 0)
          .attr("height", height)
          .attr("width", width)
-         .style("stroke", "steelblue")
+         .style("stroke", "grey")
          .style("fill", "none")
-         .style("stroke-width", 4);
-
+         .style("stroke-width", 1.5);
