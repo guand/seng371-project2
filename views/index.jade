@@ -3,7 +3,7 @@ html
     style
       include ../styles.css
 
-    title #{title}
+    title SENG371 Project #2 - Sentimental Analysis with GitHub Activities
     link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css", rel="stylesheet")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js")
 
@@ -14,22 +14,22 @@ html
 
       div.row
         div.col-md-3.col-md-offset-4
-          form.form-inline(name="repoForm", action="repo", method="get")
+          form.form-inline(name="repoForm", id="repoForm", action="repo", method="get")
             div.form-group
-              input.form-control(type="text", name="repoName", placeholder="Enter a repo name e.g. Bootstrap", size="30")
+              input.form-control(type="text", name="repoName", id="repoName", placeholder="Enter a repo name e.g. Bootstrap", size="30")
               button.btn.btn-default(type="submit") Search
 
       div.row
         div.main-chart.col-md-6.col-md-offset-3
 
       script.
-        var data = [
-            [2, 2],
-            [2, 5],
-            [6, 6],
-            [6, 7],
-            [25, 25]
-        ];
+        //- http://stackoverflow.com/a/901144
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
 
         var margin = {
           top: 20,
@@ -46,42 +46,11 @@ html
           .attr("height", height + margin.top + margin.bottom)
           .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
 
-        var x = d3.scale.linear()
-          .domain([0, d3.max(data, function (d) {
-            return d[0];
-          })])
-          .range([0, width]);
-
-        var y = d3.scale.linear()
-          .domain([0, d3.max(data, function (d) {
-            return d[1];
-          })])  
-          .range([height, 0]) // flip y
-
-        var xAxis = d3.svg.axis()
-            .scale(x)
-            .orient('bottom'); // tick orientation
-
-        var yAxis = d3.svg.axis()
-            .scale(y)
-            .orient('left'); // tick orientation
-
-        var line = d3.svg.line()
-          .x(function (d) { return x(d[0])})
-          .y(function (d) { return y(d[1])});
-
-        svg.append("path")
-            .attr('class', 'path')
-            .attr('d', line(data));
-
-        svg.append('g')
-            .attr('class', 'axis')
-            .attr('transform', 'translate(0, ' + height + ')')
-            .call(xAxis);
-
-        svg.append('g')
-            .attr('class', 'axis')
-            .call(yAxis);
+        //- var x = d3.scale.linear()
+        //-   .domain([0, d3.max(data, function (d) {
+        //-     return d[0];
+        //-   })])
+        //-   .range([0, width]);
 
         // Border around the graph
         var borderPath = svg.append("rect")
@@ -92,3 +61,64 @@ html
          .style("stroke", "grey")
          .style("fill", "none")
          .style("stroke-width", 1.5);
+
+        var parseDate = d3.time.format("%Y-%m-%d").parse;
+
+        //- Load data for all of our sources from the sources.
+        d3.json("data/" + getParameterByName("repoName") + "/hackernews", function(err, json) {
+          for (var i = 0; i < json.length; i++) {
+            json[i].date = parseDate(json[i].date);
+            json[i].score = +json[i].score;
+          }
+
+          var x = d3.time.scale()
+            .domain(d3.extent(json, function(d) {
+              return d.date;
+            }))
+            .range([0, width]);
+
+          var y = d3.scale.linear()
+            .domain(d3.extent(json, function(d) {
+              return d.score;
+            }))
+            .range([height, 0]) // flip y
+
+          var xAxis = d3.svg.axis()
+              .scale(x)
+              .orient("bottom"); // tick orientation
+
+          var yAxis = d3.svg.axis()
+              .scale(y)
+              .orient("left"); // tick orientation
+
+          var xMap = function(d) { return x(d.date) };
+          var yMap = function(d) { return y(d.score) };
+
+          //- var line = d3.svg.line()
+          //-   .x(function (d) { return x(d.date)})
+          //-   .y(function (d) { return y(d.score)});
+
+          //- svg.append("path")
+          //-     .attr("class", "path")
+          //-     .attr("d", line(json));
+
+          svg.selectAll(".dot")
+            .data(json)
+            .enter()
+            .append("circle")
+            .attr("class", "dot")
+            .attr("r", 3.5)
+            .attr("cx", xMap)
+            .attr("cy", yMap)
+            .style("fill", function (d) { return d3.scale.category10()(d.score)});
+
+          svg.append("g")
+              .attr("class", "axis")
+              .attr("transform", "translate(0, " + height + ")")
+              .call(xAxis);
+
+          svg.append("g")
+              .attr("class", "axis")
+              .call(yAxis);
+        });
+

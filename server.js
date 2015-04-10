@@ -12,29 +12,32 @@ var port = process.env.PORT || 9001;
 var router = express.Router();
 
 router.get('/', function(request, result) {
-    result.render('index', 
-        {title: 'SENG371 Project #2 - Sentimental Analysis with GitHub Activities'}
-    );
+    result.render('index');
 });
 
 router.get('/repo', function(request, result) {
-    result.render('index', 
-        {title: 'SENG371 Project #2 - Sentimental Analysis with GitHub Activities'}
-    );
+    result.render('index');
 
     var currentRepo = request.query.repoName;
-    var repoFileName = currentRepo + '.json';
+    var hackerNewsFileName = request.query.repoName + '-hackernews.json';
+    var redditFileName = request.query.repoName + '-reddit.json';
+    var gitHubFileName = request.query.repoName + '-github.json';
+
     var gitHubData, redditData, hackerNewsData;
     
-    hackerNews.search(currentRepo).then(function (response) {
-      fs.writeFile('data/' + repoFileName, JSON.stringify(response, null, 2), function(err) {
-        if (err) {
-          console.log('Could not write to file: ' + repoFileName);
-        }
+    if (currentRepo.length == 0) {
+      return;
+    }
 
-        console.log('Wrote to file: ' + repoFileName);
-      })
-    });
+    // hackerNews.search(currentRepo).then(function (response) {
+    //   fs.writeFile('data/' + hackerNewsFileName, JSON.stringify(response, null, 2), function(err) {
+    //     if (err) {
+    //       console.log('Could not write to file: ' + hackerNewsFileName);
+    //     }
+
+    //     console.log('Wrote to file: ' + hackerNewsFileName);
+    //   })
+    // });
 
 //    Q.all([gitHub.getData(currentRepo),
 //            reddit.search(currentRepo),
@@ -44,20 +47,34 @@ router.get('/repo', function(request, result) {
 //        })
 });
 
-router.get('/data', function(request, result) {
-  var currentRepo = request.query.repoName;
+router.get('/data/:repoName/:dataSource?', function(request, result) {
+  var currentRepo = request.params.repoName;
+  var dataSource = request.params.dataSource;
 
-  console.log('looking');
-  console.log(currentRepo);
+  // Return the data source that the client is asking for e.g. dataSource=reddit.
 
-  fs.readFile('data/' + repoFileName, function(err, data) {
-    if (err) {
-      console.log(err);
-      result.send('Could not find such a file: data/' + repoFileName);
-    } else {
-      result.send(data);
-    }
-  });
+  // If dataSource is not set, return all data sources.
+  if (!dataSource) {
+    var returned = {};
+
+    fs.readFile('data/' + currentRepo + '-hackernews.json', function(err, data) {
+      if (err) {
+        console.log(err);
+        result.send('Could not find such a file: data/' + currentRepo);
+      } else {
+        results.hackernews = data;
+      }
+    });
+  } else {
+    fs.readFile('data/' + currentRepo + '-' + dataSource + '.json', function(err, data) {
+      if (err) {
+        console.log(err);
+        result.send('Could not find such a file: data/' + currentRepo);
+      } else {
+        result.send(data);
+      }
+    });
+  }
 
 });
 
