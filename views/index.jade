@@ -7,19 +7,31 @@ html
     link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css", rel="stylesheet")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js")
 
+
+    nav.navbar
+      div.project-name
+        h3.bold Project #2
+      div.navbar-right.bold
+        ul.nav
+          li
+            a(href='https://github.com/guand/seng371-project2') GitHub
+          li        
+            a(href='https://github.com/guand/seng371-project2#collaborators') Collaborators
+
     body
-      div.jumbotron
-        h1 SENG 371 - Project #2
+      div.jumbotron.center
+        h1.bold SENG 371 - Project #2
+        hr
         h2 Jian Guan, Jonathan Lam, Paul Moon
 
-      div.row
+      div.row.center
         div.col-md-3.col-md-offset-4
           form.form-inline(name="repoForm", id="repoForm", action="repo", method="get")
             div.form-group
-              input.form-control(type="text", name="repoName", id="repoName", placeholder="Enter a repo name e.g. Bootstrap", size="30")
-              button.btn.btn-default(type="submit") Search
+              input.bold.form-control(type="text", name="repoName", id="repoName", placeholder="Enter a repo name e.g. Bootstrap", size="30")
+              button.bold.btn.btn-primary.search-btn(type="submit") Search
 
-      div.row
+      div.row.center
         div.main-chart.col-md-6.col-md-offset-3
 
       script.
