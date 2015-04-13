@@ -55,14 +55,16 @@ html
         $(".take-tour").click(function() {
           tour.init();
 
-          // have to use restart instead of start because if users click end tour before the end of the tour, the tour will break.
+          // have to use restart instead of start because 
+          // if users click end tour before the end of the
+          // tour, the tour will break.
           tour.restart();
         });
       });
 
     nav.navbar
       div.project-name
-        h3.nav-text.bold.test Project #2
+        h3.nav-text.bold Project #2
       div.navbar-right.bold
         ul.nav
           li#github-page
