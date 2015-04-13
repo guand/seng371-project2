@@ -23,8 +23,8 @@
   font-size: 58px !important;  
 }
 
-h3 {
-	font-size: 1.5em;
+.nav-text {
+	font-size: 2.0em;
 	color: #fff !important;
 	margin-top: 10px !important;
   	margin-bottom: 10px !important;
@@ -46,6 +46,7 @@ hr {
 
 .search-btn {
 	width: 100px;
+	background-color: #337ab7 !important;
 }
 
 .navbar {
@@ -56,7 +57,7 @@ hr {
 	border-color: transparent;
 }
 
-a {
+a, h3 {
 	color: #fff !important;
 }
 
@@ -79,4 +80,19 @@ a {
 	margin-right: 0;
   	margin-left: 10%;
 	float: left;	
+}
+
+.popover-title {
+	background-color: #18bc9c !important;
+	font-weight: bold;
+}
+
+.tour-step-backdrop {
+  position: relative;
+  z-index: 1101;
+  background: inherit;
+}
+
+#github-page {
+	background-color: #18bc9c;
 }
