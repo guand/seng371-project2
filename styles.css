@@ -1,20 +1,104 @@
 
 .path { 
-  stroke: steelblue;
-  stroke-width: 2;
-  fill: none;
+	stroke: steelblue;
+	stroke-width: 2;
+	fill: none;
 }
 
 .axis path,
 .axis line {
-  fill: none;
-  stroke: grey;
-  stroke-width: 1;
-  shape-rendering: crispEdges;
+	fill: none;
+	stroke: grey;
+	stroke-width: 1;
+	shape-rendering: crispEdges;
 }
+
+.jumbotron {
+	color: #fff !important;
+	background: #222 !important;
+	padding: 35px 0 !important;
+}
+
+.jumbotron .h1, .jumbotron h1 {
+  font-size: 58px !important;  
+}
+
+.nav-text {
+	font-size: 2.0em;
+	color: #fff !important;
+	margin-top: 10px !important;
+  	margin-bottom: 10px !important;
+}
+
+hr {
+	border-top: solid 5px !important;
+	max-width: 350px;
+	margin: 25px auto 30px;
+}
+
+.bold {
+	font-weight: bold !important;
+}
+
+.center {
+	text-align: center !important;
+}
+
+.search-btn {
+	width: 100px;
+	background-color: #337ab7 !important;
+}
+
+.navbar {
+	border-radius: 0px !important;
+	margin-bottom: 0px !important;	
+	text-transform: uppercase;
+	background-color: #18bc9c;
+	border-color: transparent;
+}
+
+a, h3 {
+	color: #fff !important;
+}
+
+#repoName {
+	margin-right: 20px;
+}
+
+.nav>li {
+	float: left;
+	color: #76daff;
+}
+.navbar-right {
+	float: right !important;
+	margin-right: 10% !important;
+	font-size: 20px;
+	letter-spacing: 1px;
+}
+
+.project-name {
+	margin-right: 0;
+  	margin-left: 10%;
+	float: left;	
+}
+
+.popover-title {
+	background-color: #18bc9c !important;
+	font-weight: bold;
+}
+
+.tour-step-backdrop {
+  position: relative;
+  z-index: 1101;
+  background: inherit;
+}
+
+#github-page {
+	background-color: #18bc9c;
+}
+
 
 .axis-label {
   font-weight: 500;
   font-size: 1em;
 }
-
