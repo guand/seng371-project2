@@ -3,6 +3,7 @@ var jade = require('jade');
 var Q = require('q');
 var d3 = require('d3');
 var fs = require("fs");
+var async = require("async");
 var hackerNews = require('./scripts/hacker-news.js');
 var reddit = require('./scripts/reddit');
 var gitHub = require('./scripts/github.js');
@@ -25,10 +26,6 @@ router.get('/repo', function(request, result) {
 
     var gitHubData, redditData, hackerNewsData;
     
-    if (currentRepo.length == 0) {
-      return;
-    }
-
     // hackerNews.search(currentRepo).then(function (response) {
     //   fs.writeFile('data/' + hackerNewsFileName, JSON.stringify(response, null, 2), function(err) {
     //     if (err) {
@@ -47,23 +44,43 @@ router.get('/repo', function(request, result) {
 //        })
 });
 
+// Return the data source that the client is asking for e.g. dataSource=reddit.
 router.get('/data/:repoName/:dataSource?', function(request, result) {
   var currentRepo = request.params.repoName;
   var dataSource = request.params.dataSource;
 
-  // Return the data source that the client is asking for e.g. dataSource=reddit.
+  // If files don't exist, hit the APIs and create the files. 
+  if (!dataSource) {
+    
+
+
+
+
+  }
+
+
+
 
   // If dataSource is not set, return all data sources.
   if (!dataSource) {
     var returned = {};
+    var error;
 
-    fs.readFile('data/' + currentRepo + '-hackernews.json', function(err, data) {
-      if (err) {
-        console.log(err);
-        result.send('Could not find such a file: data/' + currentRepo);
-      } else {
-        results.hackernews = data;
+    async.parallel({
+      hackerNews: function(callback) {
+        var data = JSON.parse(fs.readFileSync('data/' + currentRepo + '-hackernews.json'));
+        returned.hackerNews = data;
+        callback(null, data);
+      },
+      reddit: function(callback) {
+        var data = JSON.parse(fs.readFileSync('data/' + currentRepo + '-reddit.json'));
+        returned.reddit = data;
+        callback(null, data);
       }
+    }, function(err, data) {
+      if (err) throw err;
+      //console.log(returned);
+      result.send(returned);
     });
   } else {
     fs.readFile('data/' + currentRepo + '-' + dataSource + '.json', function(err, data) {
