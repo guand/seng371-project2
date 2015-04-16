@@ -38,60 +38,46 @@ router.get('/data/:repoName/:dataSource?', function(request, result) {
     dataSourcesToRetrieve[dataSource] = true;
   }
 
+  function asyncTask(dataSource, dataRetrieveFunction, callback) {
+    var fileName = repoName + '-' + dataSource + '.json';
+
+    if (dataSourcesToRetrieve[dataSource] != 'undefined') {
+      fs.readFile('data/' + fileName, function(error, content) {
+        if (error) {
+          console.log(error);
+          // File doesn't exist already. Query the API and save to a file.
+          dataRetrieveFunction(repoName).then(function (result) {
+            fs.writeFile('data/' + fileName, JSON.stringify(result, null, 2), function(error) {
+              if (error) {
+                console.log(error);
+                return console.log("Could not write to " + fileName + ".");
+              }
+
+              console.log(fileName + " successfully saved.");
+              callback(null, result);
+            });
+          });
+        } else {
+          console.log(fileName + " already exists.");
+          callback(null, JSON.parse(content));
+        }
+      });
+    }
+  };
+
   // If files don't exist, hit the APIs and create the files. 
   async.parallel({
     redditData: function(callback) {
       console.log("Obtaining Reddit data...");
-
-      if (dataSourcesToRetrieve.reddit != 'undefined') {
-        fs.readFile('data/' + redditFileName, function(error, fd) {
-          if (error) {
-            // File doesn't exist already. Query the API and save to a file.
-            console.log("Reddit file does NOT already exist.");
-            reddit.search(repoName).then(function (result) {
-              fs.writeFile('data/' + redditFileName, JSON.stringify(result, null, 2), function(err) {
-                if (err) {
-                  return console.log("Could not write to " + redditFileName + ".");
-                }
-                console.log("Reddit file successfully saved.");
-                callback(null, result);
-              });
-            });
-          } else {
-            console.log("Reddit file already exists.");
-            callback(null, JSON.parse(fd));
-          }
-        });
-      }
+      asyncTask('reddit', reddit.search, callback);
     },
     hackerNewsData: function(callback) {
       console.log("Obtaining HackerNews data...");
-      if (dataSourcesToRetrieve.hackerNews != 'undefined') {
-        fs.readFile('data/' + hackerNewsFileName, function(error, fd) {
-          if (error) {
-            // File doesn't exist.
-            console.log("HackerNews file does NOT already exist.");
-            hackerNews.search(repoName).then(function (result) {
-              console.log("Result from HackerNews");
-
-              fs.writeFile('data/' + hackerNewsFileName, JSON.stringify(result, null, 2), function(err) {
-                if (err) {
-                  return console.log("Could not write to " + hackerNewsFileName + ".");
-                }
-                console.log("HackerNews file successfully saved.");
-                callback(null, result);
-              });
-            });
-          } else {
-            console.log("HackerNews file already exists.");
-            callback(null, JSON.parse(fd));
-          }
-        });
-      }
+      asyncTask('hackerNews', hackerNews.search, callback);
     },
     gitHubData: function(callback) {
       console.log("Obtaining GitHub data...");
-      callback(null, {});
+      asyncTask('gitHub', gitHub.search, callback);
     }
   }, function(err, results) {
     if (err) throw err;
@@ -104,6 +90,7 @@ router.get('/data/:repoName/:dataSource?', function(request, result) {
     result.send(returned);
   });
 });
+
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');

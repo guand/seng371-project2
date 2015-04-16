@@ -1,18 +1,4 @@
 
-.path { 
-	stroke: steelblue;
-	stroke-width: 2;
-	fill: none;
-}
-
-.axis path,
-.axis line {
-	fill: none;
-	stroke: grey;
-	stroke-width: 1;
-	shape-rendering: crispEdges;
-}
-
 .jumbotron {
 	color: #fff !important;
 	background: #222 !important;
@@ -97,6 +83,21 @@ a, h3 {
 	background-color: #18bc9c;
 }
 
+/* D3-specific styliing */
+.path { 
+  /* Default color */
+	stroke: steelblue;
+	stroke-width: 2;
+	fill: none;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: grey;
+	stroke-width: 1;
+	shape-rendering: crispEdges;
+}
 
 .axis-label {
   font-weight: 500;
