@@ -183,14 +183,6 @@ html
             return y(d.score);
           };
 
-          //- var line = d3.svg.line()
-          //-   .x(function (d) { return x(d.date)})
-          //-   .y(function (d) { return y(d.score)});
-
-          //- svg.append("path")
-          //-     .attr("class", "path")
-          //-     .attr("d", line(json));
-          
           svg.selectAll(".hackernews.dot")
             .data(json.hackerNews)
             .enter()
