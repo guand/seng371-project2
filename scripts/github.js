@@ -1,4 +1,5 @@
 var GitHubAPI = require('github');
+var auth 	  = require('../auth/auth');
 
 // Object to URL query string
 var QS = require('qs');
@@ -20,7 +21,7 @@ var github = new GitHubAPI({
 
 github.authenticate({
     type: "oauth",
-    token: 'c43b70e87678d01e1906699c7324b9816db81e83',
+    token: auth.github,
 });
 
 var currentUser, currentRepo, pullRequests, issues, stars, commits, contributors;
