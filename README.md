@@ -146,6 +146,7 @@ This revealed many threats the validity of this study:
 - Implement more text sources such as Quora, StackOverflow etc.
 - Make the visualization better, and provide multiple methods of visualization methods such as a stacked bar graph for sentiment scores.
 - Detect the context of the text and eliminate ones that are not related to the repository.
+
 <a name="Milestones">
 ### 5.0 Milestones
 | Tasks | Values (out of 10) | Estimations | Risks (1-10, 1 least risky) | Status |
