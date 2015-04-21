@@ -15,6 +15,7 @@ $(document).ready(function() {
     console.log("Progressing");
   })
   .get(function(err, json) {
+    console.log(json);
     //- Load data for all of our sources from the sources.
   $(".loading").hide();
   var defaultColors = ["reddit", "hackerNews", "GitHub Issues"];
@@ -161,6 +162,15 @@ $(document).ready(function() {
   .style("fill", function (d) { 
     return colors(d.data_type);
   });
+
+  $('circle').tipsy({ 
+        gravity: 'w', 
+        html: true, 
+        title: function() {
+          var d = this.__data__, c = colors(d.i);
+          return d.text; 
+        }
+    });
 
   // Line graph for GitHub
   svg.append("path")
