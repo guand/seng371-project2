@@ -22,7 +22,7 @@ Software evolution research on open-source projects by Jian Guan (@guand), Paul 
   * [4.2.5 Threats to Validity](#Threats)
   * [4.2.6 Future Work](#Future)
 
-##### [5.0 5.0 Milestones](#5.0 Milestones)
+##### [5.0 Milestones](#5.0 Milestones)
 
 <a name="Introduction"/>
 ### 1.0 Project Question & Hypotheses
