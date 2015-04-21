@@ -3,9 +3,10 @@ html
     title SENG371 Project #2 - Sentimental Analysis with GitHub Activities
 
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/js/bootstrap-tour-standalone.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.7.0/lodash.min.js")
-    link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css", rel="stylesheet")
+    link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css", rel="stylesheet")
     link(href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/css/bootstrap-tour.min.css", rel="stylesheet")
     link(href="stylesheet/styles.css", rel="stylesheet")
     link(href="stylesheet/loading.css", rel="stylesheet")
@@ -39,10 +40,6 @@ html
           select.form-control(id="githubOptions")
             option(value="issues", selected) GitHub Issues
             option(value="pullRequests") GitHub Pull Requests
-
-      div.row.center
-        div.col-md-4.col-md-offset-4.progress
-          div.progress-bar.progress-bar-striped.active(role="progressbar" aria-valuemin="0" aria-valuemax="100")
 
       div.row.center
         div.main-chart.col-md-6.col-md-offset-3

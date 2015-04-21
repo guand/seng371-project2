@@ -32,7 +32,7 @@ $(document).ready(function() {
     top: 20,
     right: 50,
     bottom: 30,
-    left: 30
+    left: 50
   };
 
   var width = 700 - margin.left - margin.right,
@@ -218,7 +218,6 @@ $(document).ready(function() {
   .attr("class", "h3")
   .text(capitalize(repoName));
 
-
   d3.select("#githubOptions")
     .on("change", function() {
       var newData = d3.select(this).node().value;
@@ -247,6 +246,8 @@ $(document).ready(function() {
   }
 
   function redrawLegend() {
+    svg.selectAll(".legend").remove();
+    
     var legend = svg.selectAll(".legend")
         .data(colors.domain())
       .enter()
@@ -268,7 +269,11 @@ $(document).ready(function() {
       .style("text-anchor", "start")
       .text(function(d) { 
         // Capitalize labels in the legend.
-        return capitalize(d);
+        if (axisLabels[d])  {
+          return axisLabels[d];
+        } else {
+          return capitalize(d);
+        }
       });
   }
 
@@ -294,7 +299,7 @@ $(document).ready(function() {
     // Reconfigure the color domain/range to include the new GitHub data type
     configColors(["reddit", "hackerNews", currentGitHubDataType]);
     // Redraw the legend
-    redrawLegend(["reddit", "hackerNews", currentGitHubDataType]);
+    redrawLegend();
 
     svg.select("#yGitHubAxis")
         .call(yGitHubAxis)
