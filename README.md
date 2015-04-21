@@ -67,6 +67,7 @@ We used the following tools:
 ##### Metrics Gathered
 - List of all GitHub issues.
 - List of GitHub pull requests merged into master.
+
 <a name="Start"/>
 ### 3.0 Quick Start
 <a name="Requirements"/>
@@ -74,6 +75,7 @@ We used the following tools:
 - Access Token for Git API: To get an access token, follow these menu items on the GitHub site: Profile -> Settings -> Applications -> Personal Access Token -> Generate Token.
 - Node.js
 - **Firefox is recommended over Chrome due to styling issues**
+
 <a name="Server"/>
 #### 3.2 Running the Server
 1. `git clone git@github.com:guand/seng371-project2.git`
