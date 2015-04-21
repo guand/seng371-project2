@@ -15,10 +15,9 @@ $(document).ready(function() {
     console.log("Progressing");
   })
   .get(function(err, json) {
-    console.log(json);
     //- Load data for all of our sources from the sources.
   $(".loading").hide();
-  var defaultColors = ["reddit", "hackerNews", "GitHub Issues"];
+  var defaultColors = ["hackerNews", "reddit", "GitHub Issues"];
   var x, y, yGitHub, yGitHubAxis, data, currentGitHubDataType;
   var parseDate = d3.time.format("%Y-%m-%d").parse;
   var parseFullDate = d3.time.format.utc("%Y-%m-%dT%H:%M:%SZ").parse;
@@ -307,7 +306,7 @@ $(document).ready(function() {
     //svg.transition();
 
     // Reconfigure the color domain/range to include the new GitHub data type
-    configColors(["reddit", "hackerNews", currentGitHubDataType]);
+    configColors(["hackerNews", "reddit", currentGitHubDataType]);
     // Redraw the legend
     redrawLegend();
 

@@ -23,7 +23,8 @@ var search = function(repoName) {
 
           comments.push({
             date: data.hits[i].created_at.split("T")[0],
-            score: sentiment_score.score
+            score: sentiment_score.score,
+            text: data.hits[i].comment_text
           });
         }
         callback(null, comments);
@@ -40,7 +41,8 @@ var search = function(repoName) {
 
           comments.push({
             date: data.hits[i].created_at.split("T")[0],
-            score: sentiment_score.score
+            score: sentiment_score.score,
+            text: data.hits[i].comment_text
           });
         }
         callback(null, comments);
@@ -64,7 +66,8 @@ var search = function(repoName) {
 
           stories.push({
             date: data.hits[i].created_at.split("T")[0],
-            score: sentiment_score.score
+            score: sentiment_score.score,
+            text: data.hits[i].story_text
           });
         }
         callback(null, stories);
@@ -88,7 +91,8 @@ var search = function(repoName) {
 
           stories.push({
             date: data.hits[i].created_at.split("T")[0],
-            score: sentiment_score.score
+            score: sentiment_score.score,
+            text: data.hits[i].story_text
           });
         }
         callback(null, stories);
