@@ -18,6 +18,11 @@ Software evolution research on open-source projects by Jian Guan (@guand), Paul 
   * [4.2.1 AngularJS](#AngularJS)
   * [4.2.2 Bootstrap](#Bootstrap)
   * [4.2.3 NodeJS](#Node)
+  * [4.2.4 Overall Analysis](#Overall)
+  * [4.2.5 Threats to Validity](#Threats)
+  * [4.2.6 Future Work](#Future)
+
+##### [5.0 5.0 Milestones](#5.0 Milestones)
 
 <a name="Introduction"/>
 ### 1.0 Project Question & Hypotheses
@@ -116,15 +121,15 @@ The graph shows that Bootstrap began tracking issues around 2012 when it started
 <a name="Node">
 ##### 4.2.3 Node.js
 The graph of GitHub issues show that the Reddit scatterplot has the overall sentiment scores increasing with the rising number of GitHub issues, supporting our first hypothesis. The GitHub pull requests also show that there is a correlation between the number of pull requests and the increasing sentimental scores. The HackerNews graph shows no change in the overall sentiment scores over time.
-
+<a name="Overall">
 ##### 4.2.4 Overall Analysis
 We realized that it's difficult to get a very positive sentiment analysis score. The sentiment analyzer uses a wordlist named [AFINN-111](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010) to assign a score to certain words. For example, "breathtaking" has a score of +5 whereas "disgusting" has a score of -3. This means that to obtain high sentiment scores (50+), one needs to write an incredibly long paragraph that speaks highly of these repositories, which is unlikely in a forum such as Reddit and HackerNews. However, we noted that as popularity of a repository increases, the number of sentiment scores from 0-40 increased as well, suggesting that the overall sentiment is maintained. 
 
 As a repository gains popularity, it's unlikely that the sentiment scores will be **directly** correlated with the number of issues. Software developers on these forums are discussing the pros and cons of these repositories as popularity increases, which means it's difficult for the overall sentiment score to keep rising with the popularity.
 
 The first hypothesis was supported by all GitHub issues graphs as shown by the individual analyses. The second hypothesis, that the number of pull requests are correlated with sentiment scores, the Bootstrap and AngularJS graphs had the scatterplots too dense to visualize the increase in data plots, which would suggest an increase in sentiment scores. Therefore the second hypotheses was deemed inconclusive with our current method of visualizing the data.
-
-###### Threats to validity 
+<a name="Threats">
+##### 4.2.5 Threats to Validity 
 We implemented a on-mouseover tooltip function that shows the text of each Reddit/HackerNews data point. 
 
 ![screen shot 2015-04-21 at 2 27 53 pm](https://cloud.githubusercontent.com/assets/1689157/7262994/b6ea768c-e832-11e4-95ba-f724bc241a3c.png)
@@ -133,14 +138,14 @@ This revealed many threats the validity of this study:
 - The Reddit and HackerNews API searching feature behaves in a way that if a body of text contains even a single instance of the query term, the entire body is returned, and we analyze the entire body of text. For larger paragraphs, some text might not be related at all to the repository.
 - Some of the repository names are commonly used in English, so the context of the text may not be related to software at all. For example, angular may be used in the context of physics, like angular momentum, and "Bootstrap" may be used in the context of bootstrapping something. The worst one was "node", where people on Reddit talked about Bitcoin mining nodes, game items etc.
 - The sentiment scores are additive, so longer paragraphs will have more extreme values compared to shorter comments. This may affect our results.
-
-###### Future work
+<a name="Future">
+##### 4.2.6 Future Work
 - Normalize the scores so that lengthier text do not skew sentiment scores.
 - Implement more GitHub statistics such as LOC, number of committers etc.
 - Implement more text sources such as Quora, StackOverflow etc.
 - Make the visualization better, and provide multiple methods of visualization methods such as a stacked bar graph for sentiment scores.
 - Detect the context of the text and eliminate ones that are not related to the repository.
-
+<a name="Milestones">
 ### 5.0 Milestones
 | Tasks | Values (out of 10) | Estimations | Risks (1-10, 1 least risky) | Status |
 |--- |---	|---	|---	|--- |
