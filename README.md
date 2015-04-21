@@ -46,6 +46,7 @@ We used the following tools:
 #### 3.1 Requirements
 - Access Token for Git API: To get an access token, follow these menu items on the GitHub site: Profile -> Settings -> Applications -> Personal Access Token -> Generate Token.
 - Node.js
+- **Firefox is recommended over Chrome due to styling issues**
 
 #### 3.2 Running the Server
 1. `git clone git@github.com:guand/seng371-project2.git`
@@ -53,7 +54,9 @@ We used the following tools:
 2. Put your GitHub auth token in auth/auth.json.
 3. `node server.js`
 
-You should be able to visit `http://localhost:9001/` and start using the tool right away!
+You should be able to visit `http://localhost:9001/` and start using the tool right away! We provided a tour of our tool, as seen below.
+
+![screen shot 2015-04-21 at 2 35 49 pm](https://cloud.githubusercontent.com/assets/1689157/7263120/bd302eaa-e833-11e4-9153-e7e52d16e750.png)
 
 ### 4.0 Results & Analysis
 #### 4.1  Results
@@ -92,7 +95,7 @@ The graph shows that Bootstrap began tracking issues around 2012 when it started
 The graph of GitHub issues show that the Reddit scatterplot has the overall sentiment scores increasing with the rising number of GitHub issues, supporting our first hypothesis. The GitHub pull requests also show that there is a correlation between the number of pull requests and the increasing sentimental scores. The HackerNews graph shows no change in the overall sentiment scores over time.
 
 ##### 4.2.4 Overall Analysis
-We realized that it's difficult to get a very positive sentiment analysis score. The sentiment analyzer uses a wordlist named (AFINN-111)[http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010] to assign a score to certain words. For example, "breathtaking" has a score of +5 whereas "disgusting" has a score of -3. This means that to obtain high sentiment scores (50+), one needs to write an incredibly long paragraph that speaks highly of these repositories, which is unlikely in a forum such as Reddit and HackerNews. However, we noted that as popularity of a repository increases, the number of sentiment scores from 0-40 increased as well, suggesting that the overall sentiment is maintained. 
+We realized that it's difficult to get a very positive sentiment analysis score. The sentiment analyzer uses a wordlist named [AFINN-111](http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010) to assign a score to certain words. For example, "breathtaking" has a score of +5 whereas "disgusting" has a score of -3. This means that to obtain high sentiment scores (50+), one needs to write an incredibly long paragraph that speaks highly of these repositories, which is unlikely in a forum such as Reddit and HackerNews. However, we noted that as popularity of a repository increases, the number of sentiment scores from 0-40 increased as well, suggesting that the overall sentiment is maintained. 
 
 As a repository gains popularity, it's unlikely that the sentiment scores will be **directly** correlated with the number of issues. Software developers on these forums are discussing the pros and cons of these repositories as popularity increases, which means it's difficult for the overall sentiment score to keep rising with the popularity.
 
@@ -116,8 +119,8 @@ This revealed many threats the validity of this study:
 - Detect the context of the text and eliminate ones that are not related to the repository.
 
 ### 5.0 Milestones
-| Tasks | Values (out of 10) | Estimations | Risks (1-10, 1 least risky)| Status |
-|--- |---	|---	|---	|
+| Tasks | Values (out of 10) | Estimations | Risks (1-10, 1 least risky) | Status |
+|--- |---	|---	|---	|--- |
 | Write tool for pull GitHub activities  | 3 | 2 hours | 2 | **Complete** |
 | Write tool for scraping and extracting Reddit and HackerNews | 7 | 6 hours | 5 | **Complete** |
 | Write tool for running sentimental analysis on any text | 4 | 2 hours | 5 | **Complete** |
