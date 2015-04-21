@@ -6,11 +6,18 @@ Software evolution research on open-source projects by Jian Guan (@guand), Paul 
 
 ##### [2.0 Methodology](#Methodology)
 * [2.1  Codebases chosen for analysis](#Codebases)
+* [2.2 Tools](#Tools)
 
-##### [3.0 Base Station](#Base)
-* [3.1 Base Station Components](#Components)
-* [3.2 Joystick Controllers](#Joystick)
-* [3.3 Complete Base Station](#Complete)
+##### [3.0 Quick Start](#Start)
+* [3.1 Requirements](#Requirements)
+* [3.2 Running the Server](#Server)
+
+##### [4.0 Results & Analysis](#RA)
+* [4.1 Results](#Results)
+* [4.2 Analysis](#Analysis)
+  * [4.2.1 AngularJS](#AngularJS)
+  * [4.2.2 Bootstrap](#Bootstrap)
+  * [4.2.3 NodeJS](#Node)
 
 <a name="Introduction"/>
 ### 1.0 Project Question & Hypotheses
@@ -32,8 +39,8 @@ The tool was built so that the user can specify ANY repository. For our analysis
 - [NodeJS](https://github.com/joyent/node)
 
 These projects were chosen because the software industry are familiar with these frameworks and generate lots of discussion around them, which will be crucial for our sentimental analysis.
-
-#### 2.2  Methodology
+<a name="Tools"/>
+#### 2.2  Tools
 We used the following tools:
 
 - [GitHub API](https://developer.github.com/v3/): The GitHub API allowed us to obtain the number of issues and pull requests (merged into master) for any repository.
@@ -55,13 +62,14 @@ We used the following tools:
 ##### Metrics Gathered
 - List of all GitHub issues.
 - List of GitHub pull requests merged into master.
-
+<a name="Start"/>
 ### 3.0 Quick Start
+<a name="Requirements"/>
 #### 3.1 Requirements
 - Access Token for Git API: To get an access token, follow these menu items on the GitHub site: Profile -> Settings -> Applications -> Personal Access Token -> Generate Token.
 - Node.js
 - **Firefox is recommended over Chrome due to styling issues**
-
+<a name="Server"/>
 #### 3.2 Running the Server
 1. `git clone git@github.com:guand/seng371-project2.git`
 1. `npm install`
@@ -71,8 +79,9 @@ We used the following tools:
 You should be able to visit `http://localhost:9001/` and start using the tool right away! We provided a tour of our tool, as seen below.
 
 ![screen shot 2015-04-21 at 2 35 49 pm](https://cloud.githubusercontent.com/assets/1689157/7263120/bd302eaa-e833-11e4-9153-e7e52d16e750.png)
-
+<a name="RA"/>
 ### 4.0 Results & Analysis
+<a name="Results">
 #### 4.1  Results
 Below are the graphs showing the relationship between user satisfaction & various GitHub activities vs. time.
 ##### AngularJS
@@ -95,16 +104,16 @@ User satisfaction & GitHub issues vs. time.
 
 User satisfaction & GitHub pull requests vs. time.
 ![Node.js-pr](https://cloud.githubusercontent.com/assets/5192167/7262621/f9d411b8-e82f-11e4-8983-549144ddf437.png)
-
+<a name="Analysis">
 #### 4.2  Analysis
 Our hypothesis was that the user satisfaction increases, the number of issues will increase because high user satisfaction will promote discussion and recommendations.
-
+<a name="AngularJS">
 ##### 4.2.1 AngularJS
 From 2011 to the beginning of 2014, the graph shows a steady increase in the number of GitHub issues. During the same period, the sentiment score scatterplot shows an increase in the number of data points as well as the sentiment scores, suggesting a correlation as suggested by our first hypothesis. However, from the beginning of 2015 to the present, the number of GitHub issues are sharply increasing whereas the sentimental scores are at a relatively constant level, albeit with few extremely negative comments. This phenomenon is likely explained by the development of AngularJS 3, and the increasing popularity of AngularJS. The pull request graph was deemed inconclusive because of the density of the scatterplots.
-
+<a name="BootStrap">
 ##### 4.2.2 Bootstrap
 The graph shows that Bootstrap began tracking issues around 2012 when it started to become popular as shown by many positive reviews in Reddit. The Github pull request graph shows that Bootstrap began tracking pull requests around 2014 when Bootstrap was becoming increasingly popular as shown by both Reddit and HackerNews' scatterplots. The GitHub issues and pull requests continues to increase as user satisfaction increases. The results support our hypotheses that as user satisfaction increases, the number of issues will increase due to user discussion and recommendations, as well as the number of pull requests being correlated with user satisfaction.
-
+<a name="Node">
 ##### 4.2.3 Node.js
 The graph of GitHub issues show that the Reddit scatterplot has the overall sentiment scores increasing with the rising number of GitHub issues, supporting our first hypothesis. The GitHub pull requests also show that there is a correlation between the number of pull requests and the increasing sentimental scores. The HackerNews graph shows no change in the overall sentiment scores over time.
 
