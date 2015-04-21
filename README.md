@@ -138,6 +138,7 @@ This revealed many threats the validity of this study:
 - The Reddit and HackerNews API searching feature behaves in a way that if a body of text contains even a single instance of the query term, the entire body is returned, and we analyze the entire body of text. For larger paragraphs, some text might not be related at all to the repository.
 - Some of the repository names are commonly used in English, so the context of the text may not be related to software at all. For example, angular may be used in the context of physics, like angular momentum, and "Bootstrap" may be used in the context of bootstrapping something. The worst one was "node", where people on Reddit talked about Bitcoin mining nodes, game items etc.
 - The sentiment scores are additive, so longer paragraphs will have more extreme values compared to shorter comments. This may affect our results.
+
 <a name="Future">
 ##### 4.2.6 Future Work
 - Normalize the scores so that lengthier text do not skew sentiment scores.
