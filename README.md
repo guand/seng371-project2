@@ -1,6 +1,18 @@
 # SENG 371 - Project 2
 Software evolution research on open-source projects by Jian Guan (@guand), Paul Moon (@paulmoon), and Jonathan Lam (@lamj1234).
 
+#### Table of Contents  
+##### [1.0 Project Question & Hypotheses](#Introduction)
+
+##### [2.0 Methodology](#Methodology)
+* [2.1  Codebases chosen for analysis](#Codebases)
+
+##### [3.0 Base Station](#Base)
+* [3.1 Base Station Components](#Components)
+* [3.2 Joystick Controllers](#Joystick)
+* [3.3 Complete Base Station](#Complete)
+
+<a name="Introduction"/>
 ### 1.0 Project Question & Hypotheses
 ***How are different types of GitHub activities, such as number of pull requests and number of issues over time, correlated with user satisfaction?***
 
@@ -10,7 +22,9 @@ We will attempt to answer this question by sentiment-analyzing text from softwar
 - As user satisfaction increases, the number of issues will increase because high user satisfaction will promote discussion and recommendations, which will increase the number of users and therefore the number of bugs and issues.
 - The number of pull requests will be correlated with user satisfaction. The pull requests will introduce new features, refactor the codebase, and fix bugs, which will increase user satisfaction.
 
+<a name="Methodology"/>
 ### 2.0 Methodology
+<a name="Codebases"/>
 #### 2.1  Codebases chosen for analysis
 The tool was built so that the user can specify ANY repository. For our analysis we chose the following codebases:
 - [Angular](https://github.com/angular/angular)
