@@ -2,13 +2,14 @@ var express = require('express');
 var jade = require('jade');
 var Q = require('q');
 var d3 = require('d3');
-var fs = require("fs");
-var async = require("async");
+var fs = require('fs');
+var async = require('async');
+var base = require('path');
 var hackerNews = require('./scripts/hacker-news.js');
 var reddit = require('./scripts/reddit');
 var gitHub = require('./scripts/github.js');
 var directory = require('./library/directory.js');
-var path = __dirname + "/data";
+var path = __dirname + '/data';
 
 var app = express();
 var port = process.env.PORT || 9001;
@@ -55,6 +56,7 @@ router.get('/data/:repoName/:dataSource?', function(request, result) {
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
+app.use(express.static(base.join(__dirname, 'public')));
 app.use('/', router);
 app.listen(port);
 
