@@ -39,7 +39,7 @@ We will attempt to answer this question by sentiment-analyzing text from softwar
 - The number of pull requests will be correlated with user satisfaction. The pull requests will introduce new features, refactor the codebase, and fix bugs, which will increase user satisfaction.
 
 <a name="Methodology"/>
-### 2.0 Methodology
+### 2.0   Methodology
 <a name="Codebases"/>
 #### 2.1  Codebases chosen for analysis
 The tool was built so that the user can specify ANY repository. For our analysis we chose the following codebases:
@@ -117,7 +117,8 @@ User satisfaction & GitHub pull requests vs. time.
 ![Node.js-pr](https://cloud.githubusercontent.com/assets/5192167/7262621/f9d411b8-e82f-11e4-8983-549144ddf437.png)
 <a name="Analysis">
 #### 4.2  Analysis
-Our hypothesis was that the user satisfaction increases, the number of issues will increase because high user satisfaction will promote discussion and recommendations.
+Our hypothesis was that the user satisfaction increases, the number of issues will increase because high user satisfaction will promote discussion and recommendations, and that the GitHub pull requests are correlated with sentiment analysis scores.
+
 <a name="AngularJS">
 ##### 4.2.1 AngularJS
 From 2011 to the beginning of 2014, the graph shows a steady increase in the number of GitHub issues. During the same period, the sentiment score scatterplot shows an increase in the number of data points as well as the sentiment scores, suggesting a correlation as suggested by our first hypothesis. However, from the beginning of 2015 to the present, the number of GitHub issues are sharply increasing whereas the sentimental scores are at a relatively constant level, albeit with few extremely negative comments. This phenomenon is likely explained by the development of AngularJS 3, and the increasing popularity of AngularJS. The pull request graph was deemed inconclusive because of the density of the scatterplots.
@@ -133,14 +134,14 @@ We realized that it's difficult to get a very positive sentiment analysis score.
 
 As a repository gains popularity, it's unlikely that the sentiment scores will be **directly** correlated with the number of issues. Software developers on these forums are discussing the pros and cons of these repositories as popularity increases, which means it's difficult for the overall sentiment score to keep rising with the popularity.
 
-The first hypothesis was supported by all GitHub issues graphs as shown by the individual analyses. The second hypothesis, that the number of pull requests are correlated with sentiment scores, the Bootstrap and AngularJS graphs had the scatterplots too dense to visualize the increase in data plots, which would suggest an increase in sentiment scores. Therefore the second hypotheses was deemed inconclusive with our current method of visualizing the data.
+The first hypothesis was supported by all GitHub issue graphs as shown by the individual analyses. For the second hypothesis, that the number of pull requests is correlated with sentiment scores, the Bootstrap and AngularJS graphs had the scatterplots too dense to visualize the increase in data points, which would suggest an increase in sentiment scores. Therefore the second hypotheses was deemed inconclusive with our current method of visualizing the data.
 <a name="Threats">
 ##### 4.2.5 Threats to Validity 
-We implemented a on-mouseover tooltip function that shows the text of each Reddit/HackerNews data point. 
+We implemented an on-mouseover tooltip function that shows the text of each Reddit/HackerNews data point. 
 
 ![screen shot 2015-04-21 at 2 27 53 pm](https://cloud.githubusercontent.com/assets/1689157/7262994/b6ea768c-e832-11e4-95ba-f724bc241a3c.png)
 
-This revealed many threats the validity of this study:
+This revealed many threats to the validity of our study:
 - The Reddit and HackerNews API searching feature behaves in a way that if a body of text contains even a single instance of the query term, the entire body is returned, and we analyze the entire body of text. For larger paragraphs, some text might not be related at all to the repository.
 - Some of the repository names are commonly used in English, so the context of the text may not be related to software at all. For example, angular may be used in the context of physics, like angular momentum, and "Bootstrap" may be used in the context of bootstrapping something. The worst one was "node", where people on Reddit talked about Bitcoin mining nodes, game items etc.
 - The sentiment scores are additive, so longer paragraphs will have more extreme values compared to shorter comments. This may affect our results.
